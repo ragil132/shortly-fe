@@ -1,0 +1,13 @@
+.recaptcha-container {
+  width: 100% !important; /* Match input field width */
+  display: flex !important; /* Center the reCAPTCHA */
+  justify-content: center !important; /* Center horizontally */
+  transform: scale(0.95) !important; /* Adjust the size */
+  transform-origin: center !important; /* Keep scaling centered */
+}
+
+@media (max-width: 768px) {
+  .recaptcha-container {
+    transform: scale(0.85) !important;
+  }
+}
