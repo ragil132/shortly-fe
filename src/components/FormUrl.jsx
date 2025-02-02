@@ -3,6 +3,7 @@ import axios from "axios";
 import { auth, provider, signInWithPopup, signOut } from "../firebase";
 import ReCAPTCHA from "react-google-recaptcha";
 import logo from "../assets/logo2.png";
+import { onAuthStateChanged } from "firebase/auth";
 
 const FormUrl = () => {
   const [sourcelUrl, setSourceUrl] = useState("");
@@ -106,6 +107,19 @@ const FormUrl = () => {
       fetchUserUrls(userEmail);
     }
   }, [userEmail]);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        setUserEmail(user.email);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div
