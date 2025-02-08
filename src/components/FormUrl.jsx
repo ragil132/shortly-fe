@@ -20,6 +20,7 @@ const FormUrl = () => {
   const SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
   const REQ_SHORT_URL = import.meta.env.VITE_URL_REQ_SHORT_URL;
   const BACKEND_URL = import.meta.env.VITE_BASE_BACKEND_URL;
+  const REAL_BACKEND_URL = import.meta.env.VITE_BASE_REAL_BACKEND_URL;
   const FETCH_URLS_USER = import.meta.env.VITE_FETCH_URLS_USER;
 
   const handleLogin = async () => {
@@ -76,7 +77,7 @@ const FormUrl = () => {
         email: user ? user.email : "null",
         captcha_token: captchaToken,
       });
-      setResultShortUrl(`${BACKEND_URL}${response.data.result_short_url}`);
+      setResultShortUrl(`${response.data.result_short_url}`);
     } catch (error) {
       if (error.response && error.response.status === 422) {
         setErrorMessage(`Invalid URL: ${error.response.data.error}`);
@@ -224,11 +225,12 @@ const FormUrl = () => {
                 Result:
               </p>
               <a
-                href={resultShortUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
+                href="#"
+                onClick={() =>
+                  (window.location.href = `${REAL_BACKEND_URL}${resultShortUrl}`)
+                }
               >
+                {BACKEND_URL}
                 {resultShortUrl}
               </a>
               <button
@@ -268,10 +270,10 @@ const FormUrl = () => {
                       🔗 {url.original_url}
                     </p>
                     <a
-                      href={`${BACKEND_URL}${url.short_url}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      href="#"
+                      onClick={() =>
+                        (window.location.href = `${REAL_BACKEND_URL}${url.short_url}`)
+                      }
                     >
                       ➡️ {BACKEND_URL}
                       {url.short_url}
