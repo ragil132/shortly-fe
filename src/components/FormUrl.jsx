@@ -227,7 +227,7 @@ const FormUrl = () => {
               <a
                 href="#"
                 onClick={() =>
-                  (window.location.href = `${REAL_BACKEND_URL}${resultShortUrl}`)
+                  window.open(`${REAL_BACKEND_URL}${resultShortUrl}`, "_blank")
                 }
               >
                 {BACKEND_URL}
@@ -272,7 +272,10 @@ const FormUrl = () => {
                     <a
                       href="#"
                       onClick={() =>
-                        (window.location.href = `${REAL_BACKEND_URL}${url.short_url}`)
+                        window.open(
+                          `${REAL_BACKEND_URL}${url.short_url}`,
+                          "_blank"
+                        )
                       }
                     >
                       ➡️ {BACKEND_URL}
