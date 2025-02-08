@@ -229,13 +229,16 @@ const FormUrl = () => {
                 onClick={() =>
                   window.open(`${REAL_BACKEND_URL}${resultShortUrl}`, "_blank")
                 }
+                className="text-blue-500 hover:underline"
               >
                 {BACKEND_URL}
                 {resultShortUrl}
               </a>
               <button
                 onClick={() => {
-                  navigator.clipboard.writeText(resultShortUrl);
+                  navigator.clipboard.writeText(
+                    `${REAL_BACKEND_URL}${resultShortUrl}`
+                  );
                   alert("URL copied to clipboard!");
                 }}
                 className="mt-2 px-3 py-1 bg-gray-300 text-white rounded hover:bg-grey-600 ml-2"
