@@ -237,7 +237,7 @@ const FormUrl = () => {
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(
-                    `${REAL_BACKEND_URL}${resultShortUrl}`
+                    `${BACKEND_URL}${resultShortUrl}`
                   );
                   alert("URL copied to clipboard!");
                 }}
